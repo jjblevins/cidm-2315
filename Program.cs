@@ -1,76 +1,76 @@
-﻿namespace Homework3;
+﻿namespace Homework5;
 
 class Program
 {
     static void Main(string[] args)
     {
-        //Code for q1
-        Console.WriteLine("Input an integer;");
-        int N = Convert.ToInt32(Console.ReadLine());
-        if (N <= 1)
-        {
-            Console.WriteLine("N is not prime");
-        }
-        else
-        {
-            bool isPrime = true;
-            for (int i = 2; i * i <= N; i++)
-            {
-                if (N % i == 0)
-                {
-                    isPrime = false;
-                    break;
-                }
-            }
-            Console.WriteLine(isPrime ? "N is prime" : "N is not prime");
-        }
+        // Call Q1_method()
+        Console.WriteLine("Enter two numbers:");
+        int num1 = Convert.ToInt32(Console.ReadLine());
+        int num2 = Convert.ToInt32(Console.ReadLine());
+        int max_num = Q1_Method(num1, num2);
+        Console.WriteLine($"a={num1}; b={num2}");
+        Console.WriteLine($"The largest number is: {max_num}");
 
+        //Call Q_2method()
+        Console.WriteLine("Enter four numbers:");
+        int n1 = Convert.ToInt32(Console.ReadLine());
+        int n2 = Convert.ToInt32(Console.ReadLine());
+        int n3 = Convert.ToInt32(Console.ReadLine());
+        int n4 = Convert.ToInt32(Console.ReadLine());
+        int max_num3 = Q2_Method(n1, n2, n3, n4);
+        Console.WriteLine($"The largest number is: {max_num3}");
 
-
-
-
-
-        //Code for q2
-        Console.WriteLine("Assign an int value to N:");
-        int N1 = Convert.ToInt32(Console.ReadLine());
-        for (int row = 0; row<N1; row++)
-        {
-            for (int col = 0; col<N1; col++)
-            {
-                Console.Write('#');
-            }
-            Console.WriteLine("");
-        }
-
-
-        //Code for q3
-        Console.WriteLine("Assign an int value to N:");
-        int N2 = Convert.ToInt32(Console.ReadLine());
-        for (int row = 0; row<N2; row++){
-            for (int col = 0; col<N2; col++)
-            {
-                if(row>=col)
-                Console.Write('*');
-            }
-            Console.WriteLine("");
-            
-        }
+        // Call Q_3method()
         
+        Console.WriteLine("Enter Your Username:");
+        string username = Console.ReadLine();
+        Console.WriteLine("Enter Your Password:");
+        string password = Console.ReadLine();
+        Console.WriteLine("Enter Your Password Again:");
+        string re_password = Console.ReadLine();
+        Console.WriteLine("Enter Your Birth Year:");
+        int birth_year = Convert.ToInt32(Console.ReadLine());
+        Q3_Method(username, password, re_password, birth_year);
+       
 
-        //Code for bonus question
-        Console.WriteLine("Assign an int value to N:");
-        int N3 = Convert.ToInt32(Console.ReadLine());
-        for (int row = 0; row<N3; row++){
-            for (int col = 0; col<N3; col++)
-            {
-                if(row>=col)
-                Console.Write(row+1);
-            }
-            
-            Console.WriteLine("");
-            
+        
+    }
+
+    //Q1_method
+    static int Q1_Method(int num1, int num2)
+    {
+         int max_num = (num1 > num2) ? num1 : num2;
+         return max_num;
+    }
+    //Q2_method
+    static int Q2_Method(int n1, int n2, int n3, int n4)
+    {
+        int max_num1 = Q1_Method(n1, n2);
+        int max_num2 = Q1_Method(n3, n4);
+        int max_num3 = Q1_Method(max_num1, max_num2);
+        return max_num3;
+    }
+    
+    //Q3_method
+    static void Q3_Method(string username, string password, string re_password, int birth_year)
+    {
+        
+        int current_year = 2026;
+        int age = current_year - birth_year;
+
+        if (age < 18)
+        {
+            Console.WriteLine("Could not create an account.");
+            return;
+        }
+        if (password != re_password)
+        {
+            Console.WriteLine("Wrong Password");
+            return;
         }
 
-    
+
+        Console.WriteLine("Account created successfully.");
     }
 }
