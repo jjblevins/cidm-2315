@@ -1,76 +1,56 @@
-﻿namespace Homework5;
+﻿namespace Homework7;
 
 class Program
 {
     static void Main(string[] args)
     {
-        // Call Q1_method()
-        Console.WriteLine("Enter two numbers:");
-        int num1 = Convert.ToInt32(Console.ReadLine());
-        int num2 = Convert.ToInt32(Console.ReadLine());
-        int max_num = Q1_Method(num1, num2);
-        Console.WriteLine($"a={num1}; b={num2}");
-        Console.WriteLine($"The largest number is: {max_num}");
-
-        //Call Q_2method()
-        Console.WriteLine("Enter four numbers:");
-        int n1 = Convert.ToInt32(Console.ReadLine());
-        int n2 = Convert.ToInt32(Console.ReadLine());
-        int n3 = Convert.ToInt32(Console.ReadLine());
-        int n4 = Convert.ToInt32(Console.ReadLine());
-        int max_num3 = Q2_Method(n1, n2, n3, n4);
-        Console.WriteLine($"The largest number is: {max_num3}");
-
-        // Call Q_3method()
-        
-        Console.WriteLine("Enter Your Username:");
-        string username = Console.ReadLine();
-        Console.WriteLine("Enter Your Password:");
-        string password = Console.ReadLine();
-        Console.WriteLine("Enter Your Password Again:");
-        string re_password = Console.ReadLine();
-        Console.WriteLine("Enter Your Birth Year:");
-        int birth_year = Convert.ToInt32(Console.ReadLine());
-        Q3_Method(username, password, re_password, birth_year);
-       
-
-        
-    }
-
-    //Q1_method
-    static int Q1_Method(int num1, int num2)
-    {
-         int max_num = (num1 > num2) ? num1 : num2;
-         return max_num;
-    }
-    //Q2_method
-    static int Q2_Method(int n1, int n2, int n3, int n4)
-    {
-        int max_num1 = Q1_Method(n1, n2);
-        int max_num2 = Q1_Method(n3, n4);
-        int max_num3 = Q1_Method(max_num1, max_num2);
-        return max_num3;
-    }
-    
-    //Q3_method
-    static void Q3_Method(string username, string password, string re_password, int birth_year)
-    {
-        
-        int current_year = 2026;
-        int age = current_year - birth_year;
-
-        if (age < 18)
-        {
-            Console.WriteLine("Could not create an account.");
-            return;
-        }
-        if (password != re_password)
-        {
-            Console.WriteLine("Wrong Password");
-            return;
-        }
-
-
-        Console.WriteLine("Account created successfully.");
+       //Answer Q1 and Q2
+       Customer Alice = new Customer(110, "Alice", 28);
+       Alice.PrintCusInfo();
+       Customer Bob = new Customer(111, "Bob", 30);
+       Bob.PrintCusInfo();
+       Alice.ChangeID(220);
+       Alice.PrintCusInfo();
+       Bob.ChangeID(221);
+       Bob.PrintCusInfo();
+       Alice.CompareAge(Bob);
     }
 }
+class Customer
+    {
+        //Code for Customer class
+        private int cus_id;
+        public string cus_name { get; set; }= string.Empty;
+        public int cus_age { get; set; }
+        public Customer (int cus_id, string cus_name, int cus_age)
+        {
+            this.cus_id = cus_id;
+            this.cus_name = cus_name;
+            this.cus_age = cus_age;
+        }
+        public void ChangeID(int new_id)
+        {
+            cus_id = new_id;
+        }
+        public void PrintCusInfo()
+        {
+            Console.WriteLine($"Customer: {cus_id}, Name: {cus_name}, Age: {cus_age}");
+        }
+    
+    
+    public void CompareAge(Customer other)
+    {
+        if (this.cus_age > other.cus_age)
+        {
+            Console.WriteLine($"{this.cus_name} is older than {other.cus_name}.");
+        }
+        else if(this.cus_age < other.cus_age)
+        {
+            Console.WriteLine($"{other.cus_name} is older than {this.cus_name}.");
+        }
+        else
+        {
+            Console.WriteLine($"{this.cus_name} and {other.cus_name} are of the same age.");
+        }
+     }
+    }
